@@ -1,0 +1,111 @@
+function analyzeMessage() {
+  var input = document.getElementById("message");
+  var result = document.getElementById("result");
+
+  if (!input || !result) {
+    alert("Message input or result area is missing.");
+    return;
+  }
+
+  var message = input.value.toLowerCase().trim();
+
+  if (message === "") {
+    result.textContent = "Please enter a message first.";
+    return;
+  }
+
+  var score = 0;
+  var reasons = [];
+
+  if (
+    message.includes("otp") ||
+    message.includes("password") ||
+    message.includes("bank details") ||
+    message.includes("pin")
+  ) {
+    score += 3;
+    reasons.push("Requests sensitive information.");
+  }
+
+  if (
+    message.includes("won") ||
+    message.includes("prize") ||
+    message.includes("lottery")
+  ) {
+    score += 2;
+    reasons.push("Promises an unexpected prize.");
+  }
+
+  if (
+    message.includes("urgent") ||
+    message.includes("immediately") ||
+    message.includes("act now") ||
+    message.includes("account blocked")
+  ) {
+    score += 2;
+    reasons.push("Uses urgent or threatening language.");
+  }
+
+  if (
+    message.includes("http://") ||
+    message.includes("bit.ly") ||
+    message.includes("tinyurl.com")
+  ) {
+    score += 2;
+    reasons.push("Contains a link that needs careful checking.");
+  }
+
+  var risk = "LOW";
+
+  if (score >= 4) {
+    risk = "HIGH";
+  } else if (score >= 2) {
+    risk = "MEDIUM";
+  }
+
+  result.innerHTML = "";
+
+  var heading = document.createElement("h3");
+  heading.textContent = "Risk Level: " + risk;
+  result.appendChild(heading);
+
+  var explanation = document.createElement("p");
+
+  if (reasons.length > 0) {
+    explanation.textContent = reasons.join(" ");
+  } else {
+    explanation.textContent =
+      "No known warning patterns found. This does not prove the message is safe.";
+  }
+
+  result.appendChild(explanation);
+
+  var tip = document.createElement("p");
+  tip.textContent =
+    "Safety tip: Never share your OTP, password, or banking PIN.";
+
+  result.appendChild(tip);
+}
+
+function askBot() {
+  var input = document.getElementById("question");
+  var chat = document.getElementById("chat");
+
+  if (!input || !chat) {
+    alert("Chat input or chat area is missing.");
+    return;
+  }
+
+  var question = input.value.trim();
+
+  if (question === "") {
+    chat.textContent = "Please type a question first.";
+    return;
+  }
+
+  chat.textContent =
+    "Stay safe! Never share OTPs, passwords, or banking PINs. " +
+    "Verify suspicious messages using official sources.";
+
+  input.value = "";
+}

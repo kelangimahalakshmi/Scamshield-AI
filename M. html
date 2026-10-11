@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScamShield AI</title>
+</head>
+<body>
+
+  <header>
+    <h1>🛡️ ScamShield AI</h1>
+    <p>Your smart assistant for detecting suspicious messages</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Analyze a Message</h2>
+      <p>Paste a suspicious SMS, email, or online message below.</p>
+
+      <textarea id="message"
+        placeholder="Paste your suspicious message here..."></textarea>
+
+      <button onclick="analyzeMessage()">Analyze Message</button>
+
+      <div id="result" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <h2>💬 Scam Safety Chatbot</h2>
+      <p>Ask how to stay safe from scams.</p>
+
+      <input id="question"
+        type="text"
+        placeholder="Type your question...">
+
+      <button onclick="askBot()">Ask</button>
+
+      <div id="chat" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <h3>🛡️ Safety Tip</h3>
+      <p>Never share your OTP, password, or banking PIN with anyone.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>ScamShield AI | Stay Alert. Stay Safe.</p>
+    <small>This prototype cannot guarantee detection of every scam.</small>
+  </footer>
+
+</body>
+</html>
